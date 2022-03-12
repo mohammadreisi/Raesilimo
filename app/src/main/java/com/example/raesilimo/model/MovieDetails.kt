@@ -2,51 +2,56 @@ package com.example.raesilimo.model
 
 
 import com.google.gson.annotations.SerializedName
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 import java.io.Serializable
 
+/**Data class for movie details associated to retrofit api service that
+ * fill by server with getMovieDetail request in RetrofitApiService  */
 data class MovieDetails(
     @SerializedName("Actors")
-    val actors: String,
+    var actors: String = "",
     @SerializedName("Awards")
-    val awards: String,
+    var awards: String = "",
     @SerializedName("Country")
-    val country: String,
+    var country: String = "",
     @SerializedName("Director")
-    val director: String,
+    var director: String = "",
     @SerializedName("Genre")
-    val genre: String,
+    var genre: String = "",
     @SerializedName("imdbID")
-    val imdbID: String,
+    @PrimaryKey
+    var imdbID: String = "",
     @SerializedName("imdbRating")
-    val imdbRating: String,
+    var imdbRating: String = "",
     @SerializedName("imdbVotes")
-    val imdbVotes: String,
+    var imdbVotes: String = "",
     @SerializedName("Language")
-    val language: String,
+    var language: String = "",
     @SerializedName("Metascore")
-    val metascore: String,
+    var metascore: String = "",
     @SerializedName("Plot")
-    val plot: String,
+    var plot: String = "",
     @SerializedName("Poster")
-    val poster: String,
+    var poster: String = "",
     @SerializedName("Rated")
-    val rated: String,
+    var rated: String = "",
     @SerializedName("Ratings")
-    val ratings: List<Rating>,
+    var ratings: List<Rating>? = null,
     @SerializedName("Released")
-    val released: String,
+    var released: String = "",
     @SerializedName("Response")
-    val response: String,
+    var response: String = "",
     @SerializedName("Runtime")
-    val runtime: String,
+    var runtime: String = "",
     @SerializedName("Title")
-    val title: String,
+    var title: String = "",
     @SerializedName("totalSeasons")
-    val totalSeasons: String,
+    var totalSeasons: String = "",
     @SerializedName("Type")
-    val type: String,
+    var type: String = "",
     @SerializedName("Writer")
-    val writer: String,
+    var writer: String = "",
     @SerializedName("Year")
-    val year: String
+    var year: String = ""
 ) : Serializable

@@ -2,10 +2,11 @@ package com.example.raesilimo.model
 
 
 import com.google.gson.annotations.SerializedName
+import io.realm.RealmObject
 
 data class Rating(
     @SerializedName("Source")
-    val source: String,
+    var source: String = "",
     @SerializedName("Value")
-    val value: String
+    var value: String = ""
 )

@@ -3,15 +3,16 @@ package com.example.raesilimo.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Search(
+/**This is main movie class that store data form server and exposes it to RealmMovie*/
+data class Movie(
     @SerializedName("imdbID")
-    val imdbID: String,
+    var imdbID: String,
     @SerializedName("Poster")
-    val poster: String,
+    var poster: String,
     @SerializedName("Title")
-    val title: String,
+    var title: String,
     @SerializedName("Type")
-    val type: String,
+    var type: String,
     @SerializedName("Year")
-    val year: String
+    var year: String
 )
