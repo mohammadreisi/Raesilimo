@@ -1,9 +1,7 @@
 package com.example.raesilimo.di
 
 import com.example.raesilimo.Constants
-import com.example.raesilimo.repository.AppRepository
-import com.example.raesilimo.repository.IRepository
-import com.example.raesilimo.repository.network.RetrofitApiService
+import com.example.raesilimo.data.network.RetrofitApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+/**Network module that provide any instance of related in network api*/
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
@@ -42,8 +41,5 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-    @Singleton
-    @Provides
-    fun provideIRepository(retrofitApiService: RetrofitApiService): IRepository = AppRepository(retrofitApiService)
 
 }
