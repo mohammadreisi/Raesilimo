@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.raesilimo.R
 import com.example.raesilimo.model.MovieResponse
-import com.example.raesilimo.repository.network.NetworkResult
+import com.example.raesilimo.data.network.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
-
+/**Fragment for indicating list of all movies that get a movies list from
+ * provided method in it's view model*/
 @AndroidEntryPoint
 class ListMoviesFragment : Fragment() {
 
@@ -55,19 +56,22 @@ class ListMoviesFragment : Fragment() {
         viewModel.moviesListCallResult.observe(
             viewLifecycleOwner,
             Observer { movieResponseNetworkResult ->
-                when (movieResponseNetworkResult) {
-                    is NetworkResult.Success -> {
-                        mMovieAdapter = movieResponseNetworkResult.data?.let { ListMovieAdapter(it) }!!
-                        setRecyclerView()
-                        mProgressBar.visibility = View.GONE
-                    }
-                    is NetworkResult.Error -> {
-                        // show error message
-                    }
-                    is NetworkResult.Loading -> {
-                        // show a progress bar
-                    }
-                }
+                mMovieAdapter = ListMovieAdapter(movieResponseNetworkResult)
+                setRecyclerView()
+                mProgressBar.visibility = View.GONE
+//                when (movieResponseNetworkResult) {
+//                    is NetworkResult.Success -> {
+//                        mMovieAdapter = movieResponseNetworkResult.data?.let { ListMovieAdapter(it) }!!
+//                        setRecyclerView()
+//                        mProgressBar.visibility = View.GONE
+//                    }
+//                    is NetworkResult.Error -> {
+//                        // show error message
+//                    }
+//                    is NetworkResult.Loading -> {
+//                        // show a progress bar
+//                    }
+//                }
 
             })
     }

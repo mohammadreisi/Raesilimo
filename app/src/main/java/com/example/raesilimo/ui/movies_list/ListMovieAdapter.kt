@@ -9,15 +9,13 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.raesilimo.AppClass
 import com.example.raesilimo.R
-import com.example.raesilimo.model.MovieResponse
-import javax.inject.Inject
-
-class ListMovieAdapter(inputMovieResponse: MovieResponse) :
+import com.example.raesilimo.model.RealmMovie
+/**Movie list adapter that get a list of real movie and bind it into view holder */
+class ListMovieAdapter(movieList: List<RealmMovie>) :
     RecyclerView.Adapter<ListMovieAdapter.MovieRowViewHolder>() {
 
-    private var movieResponse = inputMovieResponse
+    private var movieList = movieList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieRowViewHolder {
         val view =
@@ -27,13 +25,13 @@ class ListMovieAdapter(inputMovieResponse: MovieResponse) :
 
     override fun onBindViewHolder(holder: MovieRowViewHolder, position: Int) {
 
-        Glide.with(holder.movieTitle.context).load(movieResponse.search.get(position).poster)
+        Glide.with(holder.movieTitle.context).load(movieList.get(position).poster)
             .into(holder.movieCover)
-        holder.movieTitle.setText(movieResponse.search.get(position).title)
-        holder.movieGenre.setText(movieResponse.search.get(position).year)
+        holder.movieTitle.setText(movieList.get(position).title)
+        holder.movieGenre.setText(movieList.get(position).year)
         holder.movieCover.setOnClickListener(View.OnClickListener {
             var detailsBundle = Bundle()
-            detailsBundle.putString("movieId", movieResponse.search.get(position).imdbID)
+            detailsBundle.putString("movieId", movieList.get(position).imdbID)
             val navController = Navigation.findNavController(holder.movieCover)
             navController!!.navigate(
                 R.id.action_listMoviesFragment_to_detailsMovieFragment,
@@ -43,7 +41,7 @@ class ListMovieAdapter(inputMovieResponse: MovieResponse) :
     }
 
     override fun getItemCount(): Int {
-        return movieResponse.search.size
+        return movieList.size
     }
 
     class MovieRowViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {

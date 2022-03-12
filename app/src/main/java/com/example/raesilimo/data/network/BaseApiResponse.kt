@@ -1,7 +1,16 @@
-package com.example.raesilimo.repository.network
+package com.example.raesilimo.data.network
 
-import retrofit2.Call
+import com.example.raesilimo.data.database.RealmDao
 import retrofit2.Response
+
+/**This class get a suspend lambda method with generic type of retrofit response
+ * and check it's successfully state and returned an generic instance of NetworkResult class
+ * corresponding it's successfully state
+ *
+ * param:
+ *          apiCall: a suspend lambda function with generic type of Response
+ * return:
+ *          an generic instance of NetworkResult class */
 
 class BaseApiResponse {
 

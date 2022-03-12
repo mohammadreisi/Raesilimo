@@ -13,10 +13,11 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.raesilimo.R
 import com.example.raesilimo.model.MovieDetails
-import com.example.raesilimo.repository.network.NetworkResult
-import com.example.raesilimo.ui.movies_list.ListMovieAdapter
+import com.example.raesilimo.data.network.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
-
+import kotlinx.coroutines.InternalCoroutinesApi
+/**Fragment for indicating movie details that get a movie id in
+ * it's argument and send request to server and get it's details*/
 @AndroidEntryPoint
 class DetailsMovieFragment : Fragment() {
     private val viewModel: DetailsMovieViewModel by viewModels()
@@ -30,6 +31,7 @@ class DetailsMovieFragment : Fragment() {
     private lateinit var mMovieDescription : TextView
     private lateinit var mProgressbar : ProgressBar
 
+    @InternalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
