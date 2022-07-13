@@ -53,7 +53,7 @@ class AppRepository @Inject constructor(
 
     override suspend fun getMoviesList(): Flow<List<RealmMovie>> {
 
-        var networkResult = getMoviesListFromServer()
+        val networkResult = getMoviesListFromServer()
 
         if (saveInputServerDataToRealm(networkResult)) {
             return flow {
@@ -69,7 +69,7 @@ class AppRepository @Inject constructor(
     private suspend fun saveInputServerDataToRealm(networkResult: NetworkResult<MovieResponse>): Boolean {
         when (networkResult) {
             is NetworkResult.Success -> {
-                for (i in 0..(networkResult.data?.movies?.size!!)) {
+                for (i in 0 until (networkResult.data?.movies?.size!!)) {
                     networkResult.data.movies.get(i).let {
                         try {
                             realmDao.saveMovie(it)
